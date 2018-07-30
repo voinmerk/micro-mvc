@@ -6,7 +6,7 @@ return array(
 		'hostname' => 'localhost',
 		'username' => 'root',
 		'password' => '',
-		'database' => 'routertest',
+		'database' => 'dumpdb',
 		'port' => 3306,
 	),
 
