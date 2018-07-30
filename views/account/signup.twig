@@ -1,0 +1,87 @@
+<div class="user-signup">
+	
+	<div class="container">
+		<div class="page-header">
+			<h1>Создать аккаунт</h1>
+		</div>
+
+		<div class="col-md-6">
+			<form id="form-signup" action="/signup" method="post">
+				{% if form.alert %}
+				<div class="alert {{ form.alert.class }}" role="alert">
+					{{ form.alert.message }}
+				</div>
+				{% endif %}
+				
+				<div class="form-group">
+					<label for="input-username">Ваше имя пользователя</label>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="username-addon"><i class="fas fa-user"></i></span>
+						</div>
+
+						<input type="text" value="{{ form.username.text }}" name="username" class="form-control {{ form.username.validClass }}" id="input-username" placeholder="Логин" aria-describedby="username-addon" required>
+					</div>
+
+					{% if form.username.validate == false %}
+					<div class="invalid-feedback" style="display: block;">{{ form.username.message }}</div>
+					{% endif %}
+				</div>
+
+				<div class="form-group">
+					<label for="input-email">Ваш эл. адрес</label>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="username-addon"><i class="fas fa-at"></i></span>
+						</div>
+
+						<input type="email" value="{{ form.email.text }}" name="email" class="form-control {{ form.email.validClass }}" id="input-email" placeholder="Почта" aria-describedby="email-addon" required>
+					</div>
+
+					{% if form.email.validate == false %}
+					<div class="invalid-feedback" style="display: block;">{{ form.email.message }}</div>
+					{% endif %}
+				</div>
+
+				<div class="form-group">
+					<label for="input-password">Ваш пароль</label>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="username-addon"><i class="fas fa-key"></i></span>
+						</div>
+
+						<input type="password" value="{{ form.password.text }}" name="password" class="form-control {{ form.password.validClass }}" id="input-password" placeholder="Пароль" aria-describedby="password-addon" required>
+					</div>
+
+					{% if form.password.validate == false %}
+					<div class="invalid-feedback" style="display: block;">{{ form.password.message }}</div>
+					{% endif %}
+				</div>
+
+				<div class="form-group">
+					<label for="input-confirm">Повторите пароль</label>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="username-addon"><i class="fas fa-check-double"></i></span>
+						</div>
+
+						<input type="password" value="{{ form.confirm.text }}" name="confirm" class="form-control {{ form.confirm.validClass }}" id="input-confirm" placeholder="Повтор пароля" aria-describedby="confirm-addon" required>
+					</div>
+
+					{% if form.confirm.validate == false %}
+					<div class="invalid-feedback" style="display: block;">{{ form.confirm.message }}</div>
+					{% endif %}
+				</div>
+
+				<div class="clearfix">
+					<button type="submit" class="btn btn-success float-right"><i class="fas fa-user-plus"></i> Создать</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</div>

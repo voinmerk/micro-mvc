@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+	<head>
+		<title>{{ title }}</title>
+
+		{{ head.css | raw }}
+		{{ head.js | raw }}
+
+	</head>
+	<body>
+		<div class="wrapper">
+			<header class="wrapHeader">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+					<div class="container">
+						<a class="navbar-brand" href="/index">
+							<i class="fab fa-servicestack"></i>
+						</a>
+
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav mr-auto">
+								<li class="nav-item {{ site.index.activeClass }}">
+									<a class="nav-link" href="/index">Главная</a>
+								</li>
+							</ul>
+
+							<ul class="navbar-nav">
+								{% if user.logged == true %}
+
+								<li class="nav-item dropdown {{ account.index.activeClass }}{{ account.images.activeClass }}">
+									<a class="nav-link dropdown-toggle" style="text-transform: uppercase;" href="#" id="account-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.username }}</a>
+
+									<div class="dropdown-menu" aria-labelledby="account-dropdown">
+										<a class="dropdown-item {{ account.index.activeClass }}" href="/user"><i class="fas fa-user"></i> Мой профиль</a>
+										<a class="dropdown-item {{ account.images.activeClass }}" href="/user/images"><i class="fas fa-images"></i> Мои изображения</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Выход</a>
+									</div>
+								</li>
+
+								{% else %}
+
+								<li class="nav-item {{ account.login.activeClass }}">
+									<a class="nav-link" href="/login">Вход</a>
+								</li>
+
+								<li class="devider"></li>
+
+								<li class="nav-item {{ account.signup.activeClass }}">
+									<a class="nav-link" href="/signup">Создать аккаунт</a>
+								</li>
+
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</header>
+
+			<div id="content">
+				{#{% if breadcrumps %}
+				<div class="container">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							{% for breadcrump in breadcrumps %}
+								{% if breadcrump.active %}
+									<li class="breadcrumb-item active" aria-current="page">{{ breadcrump.name }}</li>
+								{% else %}
+									<li class="breadcrumb-item">
+										<a href="{{ breadcrump.url }}">{{ breadcrump.name }}</a>
+									</li>
+								{% endif %}
+							{% endfor %}
+						</ol>
+					</nav>
+				</div>
+				{% endif %}#}
+
+				{{ content | raw }}
+			</div>
+		</div>
+
+		<footer class="wrapFooter">
+			<div class="container">
+				<div class="clearfix">
+					<p class="float-left"><a href="https://vk.com/voinmerk" target="_blank"><i class="fab fa-vk"></i></a></p>
+
+					<p class="float-right">Powered by <a href="https://voinmerk.ru" target="_blank">voinmerk.ru</a></p>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

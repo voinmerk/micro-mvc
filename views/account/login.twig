@@ -1,0 +1,53 @@
+<div class="user-login">
+	
+	<div class="container">
+		<div class="page-header">
+			<h1>Авторизация</h1>
+		</div>
+
+		<div class="col-md-6">
+			<form id="form-login" action="/login" method="post">
+				{% if form.alert %}
+				<div class="alert {{ form.alert.class }}" role="alert">
+					{{ form.alert.message }}
+				</div>
+				{% endif %}
+
+				<div class="form-group">
+					<label for="input-username">Ваш логин или почта</label>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="username-addon"><i class="fas fa-user"></i></span>
+						</div>
+
+						<input type="text" value="{{ form.username }}" name="username" class="form-control" id="input-username" placeholder="Логин или почта" aria-describedby="username-addon" required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="input-password">Ваш пароль</label>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="password-addon"><i class="fas fa-key"></i></span>
+						</div>
+
+						<input type="password" value="" name="password" class="form-control" id="input-password" placeholder="Пароль" aria-describedby="password-addon" required>
+					</div>
+				</div>
+
+				<div class="form-group form-check">
+					<input type="checkbox" value="{{ form.remember }}" name="remember" class="form-check-input" id="input-remember">
+
+					<label class="form-check-label" for="input-remember">Запомнить меня</label>
+				</div>
+
+				<div class="clearfix">
+					<button type="submit" class="btn btn-primary float-right"><i class="fas fa-sign-in-alt"></i> Вход</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+</div>

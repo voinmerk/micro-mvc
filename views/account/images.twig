@@ -1,0 +1,95 @@
+<div class="user-images">
+	
+	<div class="container">
+		<div class="page-header">
+			<h1>Ваши изображения</h1>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-9">
+				{% if images.count %}
+				
+				<div class="row">
+					{% for image in images.data %}
+					<div class="col-md-4">
+						<div class="card">
+							<img class="card-img-top" src="{{ image.src }}">
+
+							<div class="card-body clearfix">
+								<h5 class="card-title">{{ image.title }}</h5>
+
+								<p class="card-text">{{ image.description }}</p>
+
+								<div class="clearfix">
+									<a href="#" class="btn btn-danger float-left delete-image" data-id="{{ image.id }}"><i class="far fa-trash-alt"></i> Удалить</a>
+
+									<a href="{{ image.url }}" class="btn btn-primary float-right view-image"><i class="far fa-eye"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+
+					<script type="text/javascript">
+						$(document).ready(function(){
+							$('.card .delete-image').click(function(){
+								var id = $(this).attr('data-id');
+
+								alert('Image Id: ' + id + '\n\nDelete image?');
+
+								return true;
+							});
+
+							$('.view-image').click(function(){
+								alert('Передумал делать, лишнее ;)');
+
+								return true;
+							});
+						});
+					</script>
+				</div>
+
+				{% else %}
+					
+				<div class="alert alert-warning">
+					У вас ещё нет ни одного избражения.
+				</div>
+
+				{% endif %}
+			</div>
+
+			<div class="col-md-3">
+				<p><b>Добавить:</b></p>
+
+				<form id="form-add-images" action="/user/images" method="post" enctype="multipart/form-data">
+					{% if alert %}
+					<div class="alert {{ alert.class }}">{{ alert.message }}</div>
+					{% endif %}
+
+					<div class="form-group">
+						<label for="input-title">Название изображения</label>
+
+						<input type="text" name="title" class="form-control" id="input-title" placeholder="Название" required>
+					</div>
+
+					<div class="form-group">
+						<label for="input-description">Описание изображения</label>
+
+						<textarea class="form-control" name="description" id="input-description" rows="3" placeholder="Описание" required></textarea>
+					</div>
+
+					<div class="form-group">
+						<label for="input-file">Выбрать файл</label>
+						{#<input type="hidden" name="MAX_FILE_SIZE" value="{{ file_size }}" />#}
+						<input type="file" name="file" class="form-control-file" id="input-file" required>
+					</div>
+
+					<div class="clearfix">
+						<button type="submit" class="btn btn-primary float-left"><i class="fas fa-plus"></i> Добавить</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
